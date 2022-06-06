@@ -1,0 +1,107 @@
+/* Universal Styles */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  font-family: "Halant", serif;
+  font-size: 20px;
+  background-color: #000000;
+  color:#dcdada;
+}
+
+@keyframes slideIn {
+  0% { margin-left: -20%; }
+  100% { margin-left: 0%; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Header */
+
+header {
+  position: fixed;
+  display: flex;
+  justify-items: flex-end;
+  padding: 0.5rem;
+  z-index: 100;
+  width: 100%;
+  height: 4rem;
+  background-color: #dcdada;
+  color: #000000;
+}
+
+#logo {
+  font-weight: bold;
+  padding: 1.5rem;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.07rem;
+  text-align: left;
+  animation: slideIn 2s;
+}
+
+header nav ul {
+  display: flex;
+  padding-right: 1rem;
+}
+
+nav li {
+  padding: 1.5rem;
+}
+
+nav .nav-under :hover{
+  text-decoration: underline;
+}
+nav .nav-fill :hover{
+  background-color: #000000;
+  color: #dcdada;
+  transition: background-color 200ms ease-out;
+}
+
+nav a {
+  font-size: 1rem;
+  color: #000000;
+}
+
+#login {
+  padding: 0.2rem 0.5rem;
+  border: solid 1.75px #000000;
+  border-radius: 0.2rem;
+}
+
+
+
+/* main */
+
+main {
+  position: relative;
+  top: 5rem; /* To offset for fixed header. */
+}
+
+h1 {
+  padding: 10rem;
+  text-align: center;
+  color: #dcdada;
+  font-size: 2rem;
+  animation: fadeIn 8s ease-in;
+}
+/* input section */
+
+
+/* Footer */
+
+footer {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #000000;
+  padding: 0.5rem;
+  font-size: .75rem;
+  color: #dcdada;
+}
