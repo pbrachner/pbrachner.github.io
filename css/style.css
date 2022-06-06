@@ -4,7 +4,7 @@
 }
 
 html {
-  font-family: "Halant", serif;
+  font-family: 'Kanit', sans-serif;
   font-size: 20px;
   background-color: #000000;
   color:#dcdada;
@@ -35,7 +35,7 @@ header {
 }
 
 #logo {
-  font-weight: bold;
+  font-weight: 1000;
   padding: 1.5rem;
   flex: 1;
   text-transform: uppercase;
@@ -87,7 +87,7 @@ h1 {
   text-align: center;
   color: #dcdada;
   font-size: 2rem;
-  animation: fadeIn 8s ease-in;
+  animation: fadeIn 6s ease-in;
 }
 /* input section */
 
