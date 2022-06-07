@@ -11,8 +11,8 @@ html {
 }
 
 @keyframes slideIn {
-  0% { margin-left: -20%; }
-  100% { margin-left: 0%; }
+  0% { margin-left: -10rem; }
+  100% { margin-left: 0; }
 }
 
 @keyframes fadeIn {
