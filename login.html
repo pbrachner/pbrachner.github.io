@@ -13,7 +13,7 @@
   })(window,document,'script','dataLayer','GTM-T4XJWJ3');</script>
   <!-- End Google Tag Manager -->
   <script  src="./js/main.js" async></script>
-  <title>Test Website</title>
+  <title>Test Website- login</title>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -36,13 +36,24 @@
 
   <!-- main -->
   <main>
-    <h1 id="fadin-header">fingers crossed</h1>
-  </main>
-</body>
-<footer>
-  <div>
-    <span class="copyright"> © patrick brachner</span>
-  </div>
-</footer>
-</html>
+    <!-- input section -->
+    <h1>sign in</h1>
+    <div class="input-section" id="input-section-login">
+      <form id="input" action="#" method="POST">
+        <label for="username">username  </label><input class="input-field" type="text" id="username" name="username" required minlength="4" maxlength="15" pattern="[a-zA-Z0-9]+">
+        <br>
+        <label for="password">password  </label><input class="input-field" type="password" id="password" name="password" required minlength="8" maxlength="15">
+        <br>
+        <input class="button" type="submit" value="login">
+      </form>
+    </div>
 
+  </main>
+  
+</body>
+<footer id="footer-login">
+    <div>
+      <span class="copyright"> © patrick brachner </span>
+    </div>
+  </footer>
+</html>
