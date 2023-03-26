@@ -38,7 +38,7 @@ header {
   font-weight: 1000;
   padding: 1.5rem;
   flex: 1;
-  text-transform: uppercase;
+  text-transform: lowercase;
   letter-spacing: 0.07rem;
   text-align: left;
   animation: slideIn 2s;
