@@ -106,6 +106,7 @@ h1 {
   margin-top: 0.5rem;
   cursor: pointer;
   background-color: #dcdada;
+  text-align: center;
 }
 
 .button:hover{
