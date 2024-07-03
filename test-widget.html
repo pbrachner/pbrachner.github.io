@@ -153,7 +153,7 @@
               utm_campaign: 'IMMO_suchwidgetlight',
             });
             const url = `https://immobilien.derstandard.at/suche/${location}/${objectTenure}?${urlSearchParams}`;
-            window.open = url;
+            window.open(url, '_blank');
           };
 
           const MPhandleSelectChange = (event) => {
