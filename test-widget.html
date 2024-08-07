@@ -32,5 +32,236 @@
        document.getElementById('clicktag').setAttribute('href', clicktag);
       </script>
     </div>
+        <mp-realestate-widget>
+      <template shadowrootmode="open" shadowrootdelegatesfocus>
+        <style>
+          :host {
+            --font-size: clamp(0.875rem, 1.5vw, 1.0625rem);
+            --btn-icon-width: clamp(1rem, 2vw, 1.5rem);
+            --btn-gap: clamp(4px, 0.5vw, 7px);
+            --btn-bg-opacity: 0.07;
+            --btn-inline-padding: clamp(15px, 1.5vw, 22px);
+            --btn-block-padding: clamp(6px, 1vw, 11px);
+            --btn-border-radius: 0.1875rem;
+            --btn-line-height: calc(var(--font-size) + 7px);
+            padding: clamp(10px, 2vw, 20px);
+            background: linear-gradient(136deg, #7d55be 24.54%, #e7f3d8 67.38%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-info, 'STMatilda Info Variable');
+          }
+          @media (min-width: 768px) {
+            :host {
+              background: linear-gradient(90.2deg, #7d55be 0%, #e7f3d8 74.27%);
+            }
+          }
+          .button {
+            font-size: var(--font-size);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            isolation: isolate;
+            border-radius: var(--btn-border-radius);
+            transition: background-color 0.1s ease;
+            padding-block: var(--btn-block-padding);
+            padding-inline: var(--btn-inline-padding);
+            border: none;
+            font-family: var(--font-info, 'STMatilda Info Variable');
+            line-height: var(--btn-line-height);
+          }
+          .button--primary {
+            color: var(--theme--on-cta, white);
+            background: var(--theme--cta, hsl(263deg 45% 51%));
+          }
+          .button--primary:hover,
+          .button--primary:focus {
+            background: var(--theme--cta-hover, hsl(263deg 44% 41%));
+          }
+          .button--select {
+            display: inline-block;
+            color: var(--theme--on-surface);
+            padding-block: var(--btn-block-padding);
+            padding-inline: var(--btn-inline-padding)
+              calc(
+                var(--btn-block-padding) + var(--btn-gap) +
+                  var(--btn-icon-width)
+              );
+            overflow: hidden;
+          }
+          .button--select select {
+            appearance: none;
+            opacity: 0;
+            padding-inline: var(--btn-inline-padding);
+            cursor: pointer;
+            position: absolute;
+            inset: 0;
+            width: max-content;
+            font-family: var(--font-info, 'STMatilda Info Variable');
+            line-height: var(--btn-line-height);
+          }
+          .button--select::after,
+          .button--select::before {
+            content: '';
+            z-index: -1;
+            position: absolute;
+            inset: 0;
+            background: var(--theme--surface-2dp, white);
+            pointer-events: none;
+          }
+          .button--select::before {
+            background-color: hsl(
+              var(--theme--on-surface--hsl, 0deg 0% 13%) / var(--btn-bg-opacity)
+            );
+            z-index: 0;
+          }
+          .button--select:hover,
+          .button--select:focus-within {
+            --btn-bg-opacity: 0.1;
+          }
+          .button--image {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            margin-right: var(--btn-block-padding);
+            pointer-events: none;
+            width: var(--btn-icon-width);
+            fill: currentColor;
+          }
+          .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(20px, 4vw, 50px);
+            justify-content: center;
+            margin: 0;
+          }
+        </style>
+        <svg width="0" height="0">
+          <symbol id="mp-icon-arrow-down" viewBox="0 0 24 24">
+            <path
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            ></path>
+          </symbol>
+        </svg>
+        <script>
+          const MPhandleRealEstateSearch = (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const objectTenure = formData.get('objectTenure');
+            const location = formData.get('location');
+            const urlSearchParams = new URLSearchParams({
+              utm_source: 'derstandard',
+              utm_medium: 'widget',
+              utm_campaign: 'IMMO_suchwidgetlight',
+            });
+            const url = `https://immobilien.derstandard.at/suche/${location}/${objectTenure}?${urlSearchParams}`;
+            window.open(url, '_blank');
+          };
+          const MPhandleSelectChange = (event) => {
+            const select = event.target;
+            const optionText = select.options[select.selectedIndex].textContent;
+            select.nextElementSibling.textContent = optionText;
+          };
+        </script>
+        <form
+          onsubmit="MPhandleRealEstateSearch(event)"
+          name="realestate-search"
+          class="search-form"
+        >
+          <span class="button button--select">
+            <select
+              name="objectTenure"
+              title="Objektart"
+              onchange="MPhandleSelectChange(event)"
+            >
+              <option value="mieten-wohnung" selected>Wohnung mieten</option>
+              <option value="kaufen-wohnung">Wohnung kaufen</option>
+              <option value="mieten-haus">Haus mieten</option>
+              <option value="kaufen-haus">Haus kaufen</option>
+              <option value="mieten-gewerbeimmobilie">
+                Gewerbeimmobilie mieten
+              </option>
+              <option value="kaufen-gewerbeimmobilie">
+                Gewerbeimmobilie kaufen
+              </option>
+              <option value="alle-grundstueck">Grundstück</option>
+              <option value="alle-anlageobjekt">Anlageobjekt</option>
+              <option value="alle-sonstigeimmobilien">
+                Sonstige Immobilien
+              </option>
+              <option value="alle-alleimmobilien">Alle Immobilien</option>
+            </select>
+            <span class="button--select__label" aria-hidden="true">
+              Wohnung mieten
+            </span>
+            <svg class="button--image" aria-hidden="true">
+              <use href="#mp-icon-arrow-down"></use>
+            </svg>
+          </span>
+          <span class="button button--select">
+            <select
+              name="location"
+              title="Objektstandort"
+              onchange="MPhandleSelectChange(event)"
+            >
+              <option value="oesterreich" selected>Österreich</option>
+              <option value="burgenland">Burgenland</option>
+              <option value="kaernten">Kärnten</option>
+              <option value="steiermark">Steiermark</option>
+              <option value="niederoesterreich">Niederösterreich</option>
+              <option value="oberoesterreich">Oberösterreich</option>
+              <option value="salzburg">Salzburg</option>
+              <option value="tirol">Tirol</option>
+              <option value="vorarlberg">Vorarlberg</option>
+              <option value="wien">Wien</option>
+              <optgroup label="Wiener Bezirke">
+                <option value="wien-innere-stadt">
+                  1. Bezirk (Innere Stadt)
+                </option>
+                <option value="wien-leopoldstadt">
+                  2. Bezirk (Leopoldstadt)
+                </option>
+                <option value="wien-landstrasse">3. Bezirk (Landstraße)</option>
+                <option value="wien-wieden">4. Bezirk (Wieden)</option>
+                <option value="wien-margareten">5. Bezirk (Margareten)</option>
+                <option value="wien-mariahilf">6. Bezirk (Mariahilf)</option>
+                <option value="wien-neubau">7. Bezirk (Neubau)</option>
+                <option value="wien-josefstadt">8. Bezirk (Josefstadt)</option>
+                <option value="wien-alsergrund">9. Bezirk (Alsergrund)</option>
+                <option value="wien-favoriten">10. Bezirk (Favoriten)</option>
+                <option value="wien-simmering">11. Bezirk (Simmering)</option>
+                <option value="wien-meidling">12. Bezirk (Meidling)</option>
+                <option value="wien-hietzing">13. Bezirk (Hietzing)</option>
+                <option value="wien-penzing">14. Bezirk (Penzing)</option>
+                <option value="wien-rudolfsheim-fuenfhaus">
+                  15. Bezirk (Rudolfsheim-Fünfhaus)
+                </option>
+                <option value="wien-ottakring">16. Bezirk (Ottakring)</option>
+                <option value="wien-hernals">17. Bezirk (Hernals)</option>
+                <option value="wien-waehring">18. Bezirk (Währing)</option>
+                <option value="wien-doebling">19. Bezirk (Döbling)</option>
+                <option value="wien-brigittenau">
+                  20. Bezirk (Brigittenau)
+                </option>
+                <option value="wien-floridsdorf">
+                  21. Bezirk (Floridsdorf)
+                </option>
+                <option value="wien-donaustadt">22. Bezirk (Donaustadt)</option>
+                <option value="wien-liesing">23. Bezirk (Liesing)</option>
+              </optgroup>
+            </select>
+            <span class="button--select__label" aria-hidden="true">
+              Österreich
+            </span>
+            <svg class="button--image" aria-hidden="true">
+              <use href="#mp-icon-arrow-down"></use>
+            </svg>
+          </span>
+          <button class="button button--primary" type="submit">
+            Immobilien suchen
+          </button>
+        </form>
+      </template>
+    </mp-realestate-widget>
   </body>
 </html>
